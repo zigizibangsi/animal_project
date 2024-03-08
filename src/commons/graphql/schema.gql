@@ -1,0 +1,117 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Shelter {
+  id: String!
+  shelter_name: String!
+  shelter_number: String!
+  department_name: String!
+  department_number: String!
+}
+
+type Animal {
+  animal_id: String!
+  animal_category: ANIMAL_CATEGORY_ENUM!
+  sex: SEX_CATEGORY_ENUM!
+  ad_start: String!
+  ad_finish: String!
+  isAdopt: Boolean!
+  isReservation: Boolean!
+  img: String!
+  isNeuter: Boolean!
+  description: String!
+  location: String!
+  shelter: Shelter!
+}
+
+enum ANIMAL_CATEGORY_ENUM {
+  DOG
+  CAT
+  ETC
+}
+
+enum SEX_CATEGORY_ENUM {
+  MALE
+  FEMALE
+  UNKNOWN
+}
+
+type User {
+  primary_id: String!
+  id: String!
+  shelter_name: String!
+  shelter_number: String!
+  department_name: String!
+  department_number: String!
+}
+
+type Reservation {
+  animal_id: String!
+  name: String!
+  phone: String!
+  password: String!
+  shelter: Shelter!
+}
+
+type Query {
+  fetchUser: String!
+  fetchAnimals: [Animal!]!
+  fetchAnimal(animal_id: String!): Animal!
+  fetchReservation(name: String!, phone: String!): Reservation!
+  checkReservation: [Reservation!]!
+}
+
+type Mutation {
+  login(id: String!, password: String!): String!
+  createUser(id: String!, password: String!, shelter_name: String!, shelter_number: String!, department_name: String!, department_number: String!): User!
+  createAnimal(createAnimalInput: CreateAnimalInput!): Animal!
+  updateAnimal(animal_id: String!, updateAnimalInput: UpdateAnimalInput!): Animal!
+  deleteAnimal(animal_id: String!): Boolean!
+  createReservation(createReservationInput: CreateReservationInput!): Reservation!
+  deleteReservation(deleteReservationInput: DeleteReservationInput!): Boolean!
+}
+
+input CreateAnimalInput {
+  animal_id: String!
+  animal_category: ANIMAL_CATEGORY_ENUM!
+  sex: SEX_CATEGORY_ENUM!
+  ad_start: String!
+  ad_finish: String!
+  isAdopt: Boolean!
+  isReservation: Boolean!
+  img: String!
+  isNeuter: Boolean!
+  description: String!
+  location: String!
+}
+
+input UpdateAnimalInput {
+  animal_id: String
+  animal_category: ANIMAL_CATEGORY_ENUM
+  sex: SEX_CATEGORY_ENUM
+  ad_start: String
+  ad_finish: String
+  isAdopt: Boolean
+  isReservation: Boolean
+  img: String
+  isNeuter: Boolean
+  description: String
+  location: String
+}
+
+input CreateReservationInput {
+  animal_id: String!
+  shelter: String!
+  name: String!
+  phone: String!
+  password: String!
+}
+
+input DeleteReservationInput {
+  animal_id: String!
+  shelter: String!
+  name: String!
+  phone: String!
+  password: String!
+}
